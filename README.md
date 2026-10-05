@@ -77,30 +77,46 @@ docker-compose.yml      Yerel servis yapılandırması
 ```
 Çalıştırma
 
-Gereksinimler: Docker ve Docker Compose (lokal geliştirmek istersen Python 3.11+ ve Node.js 18+)
+Gereksinimler: Docker ve Docker Compose. Yerel geliştirme için ayrıca Python 3.11+ ve Node.js 18+ gerekir.
 
-Depoyu klonla:
+1. Depoyu klonlayın:
 
-git clone https://github.com/kullanici-adi/homomorphic-market.git
-cd homomorphic-market
+   ```bash
+   git clone https://github.com/kullanici-adi/homomorphic-market.git
+   cd homomorphic-market
+   ```
 
+   `kullanici-adi` bölümünü GitHub kullanıcı adınızla veya depo adresinizle değiştirin.
 
-Ortam değişkenlerini hazırla:
+2. Ortam değişkenlerini hazırlayın. Bash/Git Bash:
 
-cp .env.example .env
+   ```bash
+   cp .env.example .env
+   ```
 
+   PowerShell:
 
-Docker ile ayağa kaldır:
+   ```powershell
+   Copy-Item .env.example .env
+   ```
 
-docker-compose up --build -d
+3. Docker Compose ile servisleri başlatın:
 
+   ```bash
+   docker compose up --build -d
+   ```
 
 Servisler açıldıktan sonra:
 
-Frontend Arayüzü: http://localhost:3000
+- Frontend arayüzü: <http://localhost:3000>
+- Backend Swagger dokümantasyonu: <http://localhost:8000/docs>
 
-Backend Swagger Dokümantasyonu: http://localhost:8000/docs
+Servisleri durdurmak için:
 
-Lisans
+```powershell
+docker compose down
+```
 
-Bu proje MIT lisansı altındadır.
+`docker compose down -v` veritabanı volume'unu ve içindeki tüm verileri siler. Yalnızca yerel demo verilerini sıfırlamak istediğinizden eminseniz kullanın.
+
+`.env.example` yerel demo içindir. İnternete açık bir dağıtım için hazır değildir. Veritabanı portu ana makineye açılmaz; web ve API portları varsayılan olarak yalnızca `127.0.0.1` üzerinden erişilir.
